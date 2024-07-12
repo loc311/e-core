@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import org.apache.commons.lang3.StringUtils;
 import com.micro.ecommerce.exception.CustomerNotFoundException;
 import com.micro.ecommerce.model.Customer;
 import com.micro.ecommerce.model.CustomerMapper;
 import com.micro.ecommerce.model.CustomerRepository;
 import com.micro.ecommerce.request.CustomerRequest;
 import com.micro.ecommerce.response.CustomerReponse;
+import org.apache.commons.lang.StringUtils;
 
 import lombok.RequiredArgsConstructor;
 
