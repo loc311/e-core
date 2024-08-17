@@ -3,7 +3,9 @@ package com.micro.product.dto;
 import java.math.BigDecimal;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
+@Builder
 public record ProductRequest(
     
      Integer id,

@@ -31,6 +31,14 @@ public class ProductService {
         return repo.save(product).getId();
     }
 
+    public ProductRequest createProduct2(
+            ProductRequest request) {
+        var product = productMapper.toProduct(request);
+       repo.save(product);
+
+       return request;
+    }
+
     public List<ProductPurchaseResponse> purchaseProducts(
             List<ProductPurchaseRequest> request
     ) {
