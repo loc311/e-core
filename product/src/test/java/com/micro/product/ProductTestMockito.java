@@ -19,12 +19,12 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.micro.product.controller.ProductRepository;
-import com.micro.product.controller.ProductService;
-import com.micro.product.dto.ProductRequest;
-import com.micro.product.dto.ProductResponse;
+import com.micro.product.dto.request.ProductRequest;
+import com.micro.product.dto.response.ProductResponse;
 import com.micro.product.mapper.ProductMapper;
 import com.micro.product.model.Category;
 import com.micro.product.model.Product;
+import com.micro.product.service.ProductService;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductTestMockito {
@@ -59,7 +59,7 @@ public class ProductTestMockito {
         when(productMapper.toProduct(productRequest)).thenReturn(product);
         when(productRepository.save(Mockito.any(Product.class))).thenReturn(product);
 
-        ProductRequest saveProduct = productService.createProduct2(productRequest);
+        ProductRequest saveProduct = productService.createProduct(productRequest);
 
         Assertions.assertThat(saveProduct).isNotNull();
 
