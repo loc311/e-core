@@ -24,15 +24,19 @@ public class Constant {
     }
   
     public static class MessageException {
-      public static final String CREATE_TAG_FINANCE_SUCCESS = "com.example.quanlichitieu.controller.TagFinanceController.create";
-      public static final String UPDATE_TAG_FINANCE_SUCCESS = "com.example.quanlichitieu.controller.TagFinanceController.update";
+      public static final String CREATE_TAG_FINANCE_SUCCESS = "com.micro.product.controller.TagFinanceController.create";
+      public static final String UPDATE_TAG_FINANCE_SUCCESS = "com.micro.product.controller.TagFinanceController.update";
   
-      public static final String CREATE_TRANSACTION_SUCCESS = "com.example.quanlichitieu.controller.TransactionController.create";
-      public static final String UPDATE_TRANSACTION_SUCCESS = "com.example.quanlichitieu.controller.TransactionController.update";
+      public static final String CREATE_TRANSACTION_SUCCESS = "com.micro.product.controller.TransactionController.create";
+      public static final String UPDATE_TRANSACTION_SUCCESS = "com.micro.product.controller.TransactionController.update";
 
-      public static final String CREATE_PRODUCT_SUCCESS = "com.example.quanlichitieu.controller.ProductController.create";
-      public static final String UPDATE_PRODUCT_SUCCESS = "com.example.quanlichitieu.controller.ProductController.update";
-      public static final String CHANGE_PASSWORD_SUCCESS = "com.example.quanlichitieu.controller.ProductController.changePassword";
+      public static final String CREATE_PRODUCT_SUCCESS = "com.micro.product.controller.ProductController.create";
+      public static final String GET_ONE_PRODUCT_SUCCESS = "com.micro.product.controller.ProductController.findById";
+
+      public static final String CREATE_CART_SUCCESS = "com.micro.product.controller.CartController.create";
+      public static final String GET_LIST_PURCHASE_PRODUCTS ="com.micro.product.controller.ProductController.purchaseProducts";
+      public static final String UPDATE_PRODUCT_SUCCESS = "com.micro.product.controller.ProductController.update";
+      public static final String CHANGE_PASSWORD_SUCCESS = "com.micro.product.controller.ProductController.changePassword";
   
     }
   
