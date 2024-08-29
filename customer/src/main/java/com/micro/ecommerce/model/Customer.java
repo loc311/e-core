@@ -7,15 +7,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
+@Data
 @Document
 public class Customer {
 
     @Id
     private String id;
+    private Integer user_id;
+    private String email;
     private String firstname;
     private String lastname;
-    private String email;
     private Address address;
+    private boolean isActive;
+  
 }
