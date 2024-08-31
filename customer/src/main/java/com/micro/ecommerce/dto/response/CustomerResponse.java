@@ -14,13 +14,16 @@ import lombok.NoArgsConstructor;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerReponse {
+public class CustomerResponse {
 
         private int user_id;
-        private String fullName;
+        // private String fullName;
+        private String firstname;
+
+        private String lastname;
         private String email;
 
-        public CustomerReponse(int user_id) {
+        public CustomerResponse(int user_id) {
                 this.user_id = user_id;
         }
 }

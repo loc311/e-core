@@ -29,9 +29,9 @@ public class Constant {
 
     public static final String CREATE_TRANSACTION_SUCCESS = "com.micro.ecommerce.controller.TransactionController.create";
     public static final String UPDATE_TRANSACTION_SUCCESS = "com.micro.ecommerce.controller.TransactionController.update";
-    public static final String CREATE_USER_SUCCESS = "com.micro.ecommerce.controller.UserController.create";
-    public static final String UPDATE_USER_SUCCESS = "com.micro.ecommerce.controller.UserController.update";
-    public static final String CHANGE_PASSWORD_SUCCESS = "com.micro.ecommerce.controller.UserController.changePassword";
+    public static final String CREATE_USER_SUCCESS = "com.micro.ecommerce.controller.CustomerController.create";
+    public static final String UPDATE_USER_SUCCESS = "com.micro.ecommerce.controller.CustomerController.update";
+    public static final String CHANGE_PASSWORD_SUCCESS = "com.micro.ecommerce.controller.CustomerController.changePassword";
 
   }
 

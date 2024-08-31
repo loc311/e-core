@@ -15,6 +15,7 @@ public class Customer {
     private String id;
     private Integer user_id;
     private String email;
+    private String password;
     private String firstname;
     private String lastname;
     private Address address;

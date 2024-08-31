@@ -4,7 +4,7 @@ import static com.micro.ecommerce.constant.Constant.StatusException.INTERNAL_SER
 
 public class InternalServerError extends BaseException{
   public InternalServerError() {
-    setCode("com.lawman.shop_sport.exception.base.InternalServerError");
+    setCode("com.micro.ecommerce.exception.base.InternalServerError");
     setStatus(INTERNAL_SERVER_ERROR);
   }
 }

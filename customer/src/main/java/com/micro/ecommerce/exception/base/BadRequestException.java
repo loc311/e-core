@@ -5,7 +5,7 @@ import static com.micro.ecommerce.constant.Constant.StatusException.BAD_REQUEST;
 
 public class BadRequestException extends BaseException {
     public BadRequestException() {
-      setCode("com.lawman.shop_sport.exception.base.BadRequestException");
+      setCode("com.micro.ecommerce.exception.base.BadRequestException");
       setStatus(BAD_REQUEST);
     }
   }
