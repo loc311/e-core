@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.micro.product.dto.CartDTO;
 import com.micro.product.dto.request.ProductPurchaseRequest;
 import com.micro.product.dto.response.ProductPurchaseResponse;
 import com.micro.product.model.Cart;

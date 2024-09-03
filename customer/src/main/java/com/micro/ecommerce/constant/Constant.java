@@ -24,14 +24,11 @@ public class Constant {
   }
 
   public static class MessageException {
-    public static final String CREATE_TAG_FINANCE_SUCCESS = "com.micro.ecommerce.controller.TagFinanceController.create";
-    public static final String UPDATE_TAG_FINANCE_SUCCESS = "com.micro.ecommerce.controller.TagFinanceController.update";
-
-    public static final String CREATE_TRANSACTION_SUCCESS = "com.micro.ecommerce.controller.TransactionController.create";
-    public static final String UPDATE_TRANSACTION_SUCCESS = "com.micro.ecommerce.controller.TransactionController.update";
+    
     public static final String CREATE_USER_SUCCESS = "com.micro.ecommerce.controller.CustomerController.create";
     public static final String UPDATE_USER_SUCCESS = "com.micro.ecommerce.controller.CustomerController.update";
     public static final String CHANGE_PASSWORD_SUCCESS = "com.micro.ecommerce.controller.CustomerController.changePassword";
+    public static final String FIND_ALL_CUSTOMERS_SUCCESS = "com.micro.ecommerce.controller.CustomerController.getAllCustomers";
 
   }
 

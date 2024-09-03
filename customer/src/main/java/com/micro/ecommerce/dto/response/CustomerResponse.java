@@ -22,7 +22,9 @@ public class CustomerResponse {
 
         private String lastname;
         private String email;
+        private Address address;
 
+        
         public CustomerResponse(int user_id) {
                 this.user_id = user_id;
         }

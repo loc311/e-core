@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.micro.ecommerce.customer.service.CustomerService;
 import com.micro.ecommerce.dto.request.user.ChangePasswordRequest;
 import com.micro.ecommerce.dto.request.user.CustomerRequest;
+import com.micro.ecommerce.dto.request.user.CustomerUpdateRequest;
 import com.micro.ecommerce.dto.response.CustomerResponse;
 import com.micro.ecommerce.exception.user.EmailAlreadyExistException;
 import com.micro.ecommerce.exception.user.PasswordIncorrectException;
@@ -61,19 +62,16 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public CustomerResponse updateCustomer(String id, CustomerRequest customerRequest) {
+    public CustomerResponse updateCustomer(String id, CustomerUpdateRequest customerUpdateRequest) {
         log.info("Update customer with id: {}", id);
 
         Customer existingCustomer = customerRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException());
 
-        if (!passwordEncoder.matches(customerRequest.getPassword(), existingCustomer.getPassword())) {
-            throw new PasswordIncorrectException();
-        }
 
-        existingCustomer.setFirstname(customerRequest.getFirstname());
-        existingCustomer.setLastname(customerRequest.getLastname());
-        existingCustomer.setEmail(customerRequest.getEmail());
+        existingCustomer.setFirstname(customerUpdateRequest.getFirstname());
+        existingCustomer.setLastname(customerUpdateRequest.getLastname());
+        existingCustomer.setAddress(customerUpdateRequest.getAddress());
 
         Customer updatedCustomer = customerRepository.save(existingCustomer);
         return MapperUtils.toDTO(updatedCustomer, CustomerResponse.class);

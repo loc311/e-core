@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
-import static com.micro.product.Constant.CommonConstants.ENCODING_UTF_8;
+import static com.micro.product.constant.Constant.CommonConstants.ENCODING_UTF_8;
 
 @Configuration
 public class MessageConfiguration {

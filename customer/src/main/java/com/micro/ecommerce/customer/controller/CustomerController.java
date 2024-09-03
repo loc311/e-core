@@ -8,7 +8,9 @@ import com.micro.ecommerce.customer.service.CustomerService;
 import com.micro.ecommerce.customer.service.MessageService;
 import com.micro.ecommerce.dto.ResponseGeneral;
 import com.micro.ecommerce.dto.request.user.CustomerRequest;
+import com.micro.ecommerce.dto.request.user.CustomerUpdateRequest;
 import com.micro.ecommerce.dto.response.CustomerResponse;
+import com.micro.ecommerce.model.Customer;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,24 +42,41 @@ public class CustomerController {
                                 customerService.createCustomer(request));
         }
 
-        // @PutMapping
-        // public ResponseGeneral<Void> updateCustomer(
-        //                 @RequestBody @Valid CustomerRequest request,
-        //                 @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language) {
-        //         log.info("(updateCustomer) request: {}", request);
-        //         customerService.updateCustomer(request);
-        //         return ResponseGeneral.ofSuccess(
-        //                         messageService.getMessage("update.customer.success", language));
-        // }
+        @PutMapping("/update-customer/{id}")
+        public ResponseGeneral<CustomerResponse> updateCustomer(
+                @PathVariable String id,
+                @RequestBody @Valid CustomerUpdateRequest request,
+                @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+        ){
+                log.info("(updateCustomer) request: {}", request);
 
-        // @GetMapping
-        // public ResponseGeneral<List<CustomerResponse>> findAll(
-        //                 @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language) {
-        //         log.info("(findAll)");
-        //         return ResponseGeneral.ofSuccess(
-        //                         messageService.getMessage("find.all.customers.success", language),
-        //                         customerService.findAllCustomer());
-        // }
+                
+                return ResponseGeneral.ofSuccess(
+                        messageService.getMessage(UPDATE_USER_SUCCESS, language),
+                        customerService.updateCustomer(id,request)
+                        );
+        }
+
+       @GetMapping
+       public ResponseGeneral<List<CustomerResponse>> getAllCustomers( 
+        @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+       ) {
+        log.info("(getAllCustomers)");
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(FIND_ALL_CUSTOMERS_SUCCESS, language),
+                customerService.getAllCustomers()
+        );
+       }
+
+       @GetMapping("/{id}")
+       public ResponseGeneral<Customer> findByEmail(
+                        @PathVariable String email,
+                        @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language) {
+                log.info("(findById) email: {}", email);
+                return ResponseGeneral.ofSuccess(
+                                messageService.getMessage("find.customer.success", language),
+                                customerService.getCustomerByEmail(email));
+        }
 
         // @GetMapping("/exists/{customer-id}")
         // public ResponseGeneral<Boolean> existsById(
