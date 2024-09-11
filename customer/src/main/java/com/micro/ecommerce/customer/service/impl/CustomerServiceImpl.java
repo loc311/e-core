@@ -15,7 +15,7 @@ import com.micro.ecommerce.exception.user.EmailAlreadyExistException;
 import com.micro.ecommerce.exception.user.PasswordIncorrectException;
 import com.micro.ecommerce.exception.user.UserNotFoundException;
 import com.micro.ecommerce.model.Customer;
-import com.micro.ecommerce.model.CustomerRepository;
+import com.micro.ecommerce.model.repo.CustomerRepository;
 import com.micro.ecommerce.ultils.MapperUtils;
 
 import lombok.RequiredArgsConstructor;

@@ -1,10 +1,13 @@
-package com.micro.ecommerce.model;
+package com.micro.ecommerce.model.repo;
 
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import com.micro.ecommerce.model.Customer;
+
 import org.springframework.data.mongodb.repository.Update;
 
 public interface CustomerRepository extends MongoRepository<Customer, String> {
@@ -38,4 +41,6 @@ public interface CustomerRepository extends MongoRepository<Customer, String> {
 
     @Query("{ 'email': ?0 }")
     Customer getByEmail(String email);
+
+    Customer getById(String id);
 }

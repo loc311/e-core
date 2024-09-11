@@ -4,6 +4,9 @@ import static com.micro.ecommerce.constant.Constant.AuthenticationConstant.CLAIM
 
 import java.util.HashMap;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -22,27 +25,34 @@ import lombok.extern.slf4j.Slf4j;
 public class AuthServiceImpl implements AuthService {
 
     private final CustomerService customerService;
+    private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
 
     @Override
     public LoginResponseDTO login(String email, String password) {
 
-        log.info("(login) start email: {} , password: {}", email, password);
+       log.info("(login) start email: {}", email);
 
-        Customer customer = customerService.getCustomerByEmail(email);
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(email, password)
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        Customer customer = (Customer) authentication.getPrincipal();
+
         if (!customer.isActive()) {
             throw new UserNotActivatedException();
         }
-        customerService.equalPassword(password, customer.getPassword());
 
         var claims = new HashMap<String, Object>();
         claims.put(CLAIM_USERNAME_KEY, email);
 
         String accessToken = tokenService.generateAccessToken(
-                customer.getUser_id(), claims);
+                customer.getId(), claims);
 
         String refreshToken = tokenService.generateRefreshToken(
-                customer.getUser_id(),
+                customer.getId(),
                 customer.getEmail());
 
         return new LoginResponseDTO(accessToken, refreshToken);

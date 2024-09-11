@@ -7,9 +7,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.micro.ecommerce.customer.service.CustomerService;
 import com.micro.ecommerce.customer.service.MessageService;
+import com.micro.ecommerce.customer.service.auth.AuthService;
 import com.micro.ecommerce.customer.service.impl.CustomerServiceImpl;
 import com.micro.ecommerce.customer.service.impl.MessageServiceImpl;
-import com.micro.ecommerce.model.CustomerRepository;
+import com.micro.ecommerce.model.repo.CustomerRepository;
 
 @Configuration
 public class SpendingManagementConfiguration {

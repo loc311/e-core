@@ -3,6 +3,10 @@ package com.micro.ecommerce.customer.service.impl;
 import com.micro.ecommerce.customer.service.TokenService;
 import com.micro.ecommerce.exception.token.TokenExpiredException;
 import com.micro.ecommerce.exception.token.TokenInvalidException;
+import com.micro.ecommerce.model.Customer;
+import com.micro.ecommerce.model.repo.CustomerRepository;
+import com.micro.ecommerce.model.repo.KeysRepository;
+import com.micro.ecommerce.exception.user.UserNotFoundException;
 
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +21,7 @@ import io.jsonwebtoken.security.Keys;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -28,12 +33,16 @@ public class TokenServiceImpl implements TokenService {
     @Value("${application.token.expire-time-refresh-token}")
     public long expireTimeRefreshToken;
 
+    private  KeysRepository keysRepository;
+
+    private CustomerRepository customerRepository;
+
     @PostConstruct
     public void init() {
         this.key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
     
-    private String generateToken(int subject, Map<String, Object> claims, long tokenLifeTime) {
+    private String generateToken(String subject, Map<String, Object> claims, long tokenLifeTime) {
         log.info("(generateToken)start");
         return Jwts.builder()
                 .setSubject(String.valueOf(subject))
@@ -45,17 +54,17 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public String generateAccessToken(int userId, Map<String, Object> claims) {
+    public String generateAccessToken(String id, Map<String, Object> claims) {
         log.info("(generateAccessToken)start");
-        return generateToken(userId, claims, expireTimeAccessToken);
+        return generateToken(id, claims, expireTimeAccessToken);
     }
 
     @Override
-    public String generateRefreshToken(int userId, String email) {
+    public String generateRefreshToken(String id, String email) {
         log.info("(generateRefreshToken)start");
         var claims = new HashMap<String, Object>();
         claims.put("email", email);
-        return generateToken(userId, claims, expireTimeRefreshToken);
+        return generateToken(id, claims, expireTimeRefreshToken);
     }
 
     @Override
@@ -77,6 +86,7 @@ public class TokenServiceImpl implements TokenService {
         return String.valueOf(claims.get("email"));
     }
 
+    @Override
     public void validateToken(String token) {
         log.info("(validateToken)start");
         if (!isValidToken(token)) {
@@ -115,5 +125,4 @@ public class TokenServiceImpl implements TokenService {
             return false;
         }
     }
-
 }
